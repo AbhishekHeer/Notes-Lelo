@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "497729192904",
+    "project_id": "notes-lelo",
+    "storage_bucket": "notes-lelo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497729192904:android:072e257daeb96da0f776fd",
+        "android_client_info": {
+          "package_name": "com.example.notes_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAZOHRSgbh-Lre7l9AzpdF24UXfRs7mBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
