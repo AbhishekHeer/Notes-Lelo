@@ -18,7 +18,7 @@ NotchBottomBarController _page = NotchBottomBarController();
 int current = 0;
 
 class _HomeScreenState extends State<HomeScreen> {
-  List screens = [const HomeBody(), const SettingBody()];
+  List screens = [const HomeBody(), SettingBody()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(

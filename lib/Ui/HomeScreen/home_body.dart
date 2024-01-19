@@ -7,6 +7,8 @@ import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:notes_app/Ui/Auth/Login.dart';
+import 'package:notes_app/Ui/Auth/auth_method.dart';
 import 'package:notes_app/Ui/HomeScreen/homeScreen.dart';
 
 class HomeBody extends StatefulWidget {
@@ -22,13 +24,26 @@ class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      shrinkWrap: true,
       slivers: [
         SliverAppBar(
           actions: [
             CircleAvatar(
+              backgroundColor: Colors.white,
               child: IconButton(
-                onPressed: () {},
-                icon: const Icon(CupertinoIcons.person),
+                onPressed: () {
+                  AuthMethod().delete(context).then((value) {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const LoginScreen()),
+                    );
+                  });
+                },
+                icon: const Icon(
+                  CupertinoIcons.person,
+                  color: Colors.black,
+                ),
               ),
             ),
             SizedBox(
@@ -54,18 +69,18 @@ class _HomeBodyState extends State<HomeBody> {
         SliverList(
             delegate: SliverChildListDelegate([
           const SearchBar(),
-          SizedBox(
-            height: Get.height,
-            width: Get.width,
-            child: StreamBuilder(
-              stream: db.snapshots(),
-              builder: ((context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return const Center(
-                    child: Text('text'),
-                  );
-                } else {
-                  return GridView.builder(
+          StreamBuilder(
+            stream: db.snapshots(),
+            builder: ((context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: Text('text'),
+                );
+              } else {
+                return Expanded(
+                  child: GridView.builder(
+                      shrinkWrap: true,
+                      physics: const ScrollPhysics(),
                       itemCount: snapshot.data?.docs.length,
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
@@ -169,6 +184,20 @@ class _HomeBodyState extends State<HomeBody> {
                                                     builder: (context) =>
                                                         const HomeScreen()),
                                               );
+                                              ScaffoldMessenger.of(context)
+                                                  .showSnackBar(const SnackBar(
+                                                      backgroundColor:
+                                                          Colors.greenAccent,
+                                                      content: Row(
+                                                        mainAxisAlignment:
+                                                            MainAxisAlignment
+                                                                .spaceBetween,
+                                                        children: [
+                                                          Text(
+                                                              'Done File Saved In Download'),
+                                                          Icon(Icons.done)
+                                                        ],
+                                                      )));
                                             },
                                             onProgress: (fileName, progress) {
                                               showAdaptiveDialog(
@@ -202,10 +231,10 @@ class _HomeBodyState extends State<HomeBody> {
                             ),
                           ),
                         );
-                      });
-                }
-              }),
-            ),
+                      }),
+                );
+              }
+            }),
           ),
         ])),
       ],

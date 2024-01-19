@@ -40,7 +40,6 @@ class Upload {
         });
 
     final store = FirebaseFirestore.instance.collection('pdf');
-
     final String id = DateTime.now().microsecondsSinceEpoch.toString();
     final ref = FirebaseStorage.instance.ref().child('pdf/$id.pdf');
     final task = await ref.putFile(pdf);

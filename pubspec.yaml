@@ -53,6 +53,7 @@ dependencies:
   firebase_storage: ^11.6.0
   percent_indicator: ^4.2.3
   flutter_file_downloader: ^1.2.1
+  babstrap_settings_screen: ^0.1.6
 
 dev_dependencies:
   flutter_test:
