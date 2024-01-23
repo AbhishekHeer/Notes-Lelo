@@ -174,9 +174,9 @@ class _UploadScreenState extends State<UploadScreen> {
                     } else if (sem.text.length > 1) {
                       Get.snackbar('Error', "Sem Is Not Greater Than 10");
                     } else {
-                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                           content: Row(
-                        children: [Text('Error')],
+                        children: const [Text('Error')],
                       )));
                     }
                   },
@@ -222,10 +222,10 @@ class _UploadScreenState extends State<UploadScreen> {
           // pdf = File(result.files.first.path);
           // filecont.text = pdf.absolute.toString();
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
               backgroundColor: Colors.redAccent,
               content: Row(
-                children: [Text('No File Picked'), Icon(Icons.error)],
+                children: const [Text('No File Picked'), Icon(Icons.error)],
               )));
         }
       });

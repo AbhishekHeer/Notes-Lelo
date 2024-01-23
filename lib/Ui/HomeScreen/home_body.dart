@@ -68,7 +68,6 @@ class _HomeBodyState extends State<HomeBody> {
         ),
         SliverList(
             delegate: SliverChildListDelegate([
-          const SearchBar(),
           StreamBuilder(
             stream: db.snapshots(),
             builder: ((context, snapshot) {
@@ -185,14 +184,14 @@ class _HomeBodyState extends State<HomeBody> {
                                                         const HomeScreen()),
                                               );
                                               ScaffoldMessenger.of(context)
-                                                  .showSnackBar(const SnackBar(
+                                                  .showSnackBar(SnackBar(
                                                       backgroundColor:
                                                           Colors.greenAccent,
                                                       content: Row(
                                                         mainAxisAlignment:
                                                             MainAxisAlignment
                                                                 .spaceBetween,
-                                                        children: [
+                                                        children: const [
                                                           Text(
                                                               'Done File Saved In Download'),
                                                           Icon(Icons.done)
@@ -200,7 +199,7 @@ class _HomeBodyState extends State<HomeBody> {
                                                       )));
                                             },
                                             onProgress: (fileName, progress) {
-                                              showAdaptiveDialog(
+                                              showDialog(
                                                   context: context,
                                                   builder: ((context) {
                                                     return AlertDialog(

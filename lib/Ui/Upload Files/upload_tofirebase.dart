@@ -14,10 +14,10 @@ class Upload {
       TextEditingController sem,
       context,
       TextEditingController pdfname) async {
-    showAdaptiveDialog(
+    showDialog(
         context: context,
         builder: (context) {
-          return AlertDialog.adaptive(
+          return AlertDialog(
             backgroundColor: null,
             content: SizedBox(
               height: Get.height * .1,
@@ -41,7 +41,7 @@ class Upload {
 
     final store = FirebaseFirestore.instance.collection('pdf');
     final String id = DateTime.now().microsecondsSinceEpoch.toString();
-    final ref = FirebaseStorage.instance.ref().child('pdf/$id.pdf');
+    final ref = FirebaseStorage.instance.ref().child('pdf/$pdfname.pdf');
     final task = await ref.putFile(pdf);
     final url = await task.ref.getDownloadURL();
 
