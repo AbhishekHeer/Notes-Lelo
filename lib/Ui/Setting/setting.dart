@@ -23,22 +23,40 @@ class SettingBody extends StatelessWidget {
             settingColor: Colors.red,
             userName: FirebaseAuth.instance.currentUser?.displayName,
             userProfilePic: NetworkImage(url.toString()),
-            cardActionWidget: SettingsItem(
-              icons: Icons.edit,
-              iconStyle: IconStyle(
-                withBackground: true,
-                borderRadius: 50,
-                backgroundColor: Colors.yellow[600],
-              ),
-              title: "Modify",
-              subtitle: "Tap to change your data",
-              onTap: () {},
-            ),
+            // cardActionWidget: SettingsItem(
+            //   icons: Icons.edit,
+            //   iconStyle: IconStyle(
+            //     withBackground: true,
+            //     borderRadius: 50,
+            //     backgroundColor: Colors.yellow[600],
+            //   ),
+            //   title: "Modify",
+            //   subtitle: "",
+            //   onTap: () {},
+            // ),
           ),
           SettingsGroup(
             items: [
               SettingsItem(
-                onTap: () {},
+                onTap: () {
+                  ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.only(left: Get.width * .02),
+                        child: const Text('Contect With Developer'),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(right: Get.width * .02),
+                        child: const Icon(
+                          Icons.error,
+                          color: Colors.amber,
+                        ),
+                      )
+                    ],
+                  )));
+                },
                 icons: CupertinoIcons.pencil_outline,
                 iconStyle: IconStyle(),
                 title: 'API',

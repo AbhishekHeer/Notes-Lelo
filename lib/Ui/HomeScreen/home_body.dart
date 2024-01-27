@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_file_downloader/flutter_file_downloader.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
@@ -24,7 +25,6 @@ class _HomeBodyState extends State<HomeBody> {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
-      shrinkWrap: true,
       slivers: [
         SliverAppBar(
           actions: [
@@ -56,7 +56,6 @@ class _HomeBodyState extends State<HomeBody> {
               'Notes Lelo',
               style: GoogleFonts.poppins(fontSize: Get.width * .05),
             ),
-            centerTitle: true,
             background: const Image(
               image: AssetImage('Assets/Image/book.jpg'),
               fit: BoxFit.cover,
@@ -72,9 +71,7 @@ class _HomeBodyState extends State<HomeBody> {
             stream: db.snapshots(),
             builder: ((context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: Text('text'),
-                );
+                return const CircularProgressIndicator.adaptive();
               } else {
                 return Expanded(
                   child: GridView.builder(
@@ -99,7 +96,7 @@ class _HomeBodyState extends State<HomeBody> {
                             color: Colors.grey,
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Padding(
                                   padding: EdgeInsets.symmetric(
@@ -161,66 +158,89 @@ class _HomeBodyState extends State<HomeBody> {
                                     ),
                                   ],
                                 ),
-                                Padding(
-                                  padding: EdgeInsets.only(
-                                      left: Get.width * .14,
-                                      top: Get.width * .27),
-                                  child: CircleAvatar(
-                                    radius: Get.width * .06,
-                                    backgroundColor: Colors.white,
-                                    child: Center(
-                                      child: IconButton(
-                                        onPressed: () async {
-                                          FileDownloader.downloadFile(
-                                            url: snapshot.data?.docs[index]
-                                                ['file'],
-                                            onDownloadCompleted: (path) async {
-                                              File(path);
+                                Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                        left: Get.width * .1,
+                                        right: Get.height * .01,
+                                        bottom: Get.height * .02,
+                                        top: Get.width * .27),
+                                    child: CircleAvatar(
+                                      radius: Get.width * .06,
+                                      backgroundColor: Colors.white,
+                                      child: Center(
+                                        child: IconButton(
+                                          onPressed: () async {
+                                            FileDownloader.downloadFile(
+                                              url: snapshot.data?.docs[index]
+                                                  ['file'],
+                                              onDownloadCompleted:
+                                                  (path) async {
+                                                File(path);
 
-                                              Navigator.pushReplacement(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        const HomeScreen()),
-                                              );
-                                              ScaffoldMessenger.of(context)
-                                                  .showSnackBar(SnackBar(
-                                                      backgroundColor:
-                                                          Colors.greenAccent,
-                                                      content: Row(
-                                                        mainAxisAlignment:
-                                                            MainAxisAlignment
-                                                                .spaceBetween,
-                                                        children: const [
-                                                          Text(
-                                                              'Done File Saved In Download'),
-                                                          Icon(Icons.done)
-                                                        ],
-                                                      )));
-                                            },
-                                            onProgress: (fileName, progress) {
-                                              showDialog(
-                                                  context: context,
-                                                  builder: ((context) {
-                                                    return AlertDialog(
-                                                      content: SizedBox(
-                                                        height:
-                                                            Get.height * .05,
-                                                        width: Get.width,
-                                                        child: const Center(
-                                                          child:
-                                                              CircularProgressIndicator(),
+                                                Navigator.pushReplacement(
+                                                  context,
+                                                  MaterialPageRoute(
+                                                      builder: (context) =>
+                                                          const HomeScreen()),
+                                                );
+                                                ScaffoldMessenger.of(context)
+                                                    .showSnackBar(
+                                                        const SnackBar(
+                                                            backgroundColor:
+                                                                Colors
+                                                                    .greenAccent,
+                                                            content: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .spaceBetween,
+                                                              children: [
+                                                                Text(
+                                                                    'Done File Saved In Download'),
+                                                                Icon(Icons.done)
+                                                              ],
+                                                            )));
+                                              },
+                                              onProgress: (fileName, progress) {
+                                                showDialog(
+                                                    barrierColor:
+                                                        Colors.transparent,
+                                                    context: context,
+                                                    builder: ((context) {
+                                                      return AlertDialog(
+                                                        backgroundColor:
+                                                            Colors.black,
+                                                        content: SizedBox(
+                                                          height:
+                                                              Get.height * .09,
+                                                          width: Get.width,
+                                                          child: Column(
+                                                            children: [
+                                                              const Center(
+                                                                child:
+                                                                    CircularProgressIndicator(),
+                                                              ),
+                                                              SizedBox(
+                                                                height:
+                                                                    Get.height *
+                                                                        .02,
+                                                              ),
+                                                              Text(progress
+                                                                  .toString()),
+                                                            ],
+                                                          ),
                                                         ),
-                                                      ),
-                                                    );
-                                                  }));
-                                            },
-                                          );
-                                        },
-                                        icon: Icon(
-                                          CupertinoIcons.down_arrow,
-                                          size: Get.width * .06,
-                                          color: Colors.black,
+                                                      );
+                                                    }));
+                                              },
+                                            );
+                                          },
+                                          icon: Icon(
+                                            CupertinoIcons.down_arrow,
+                                            size: Get.width * .06,
+                                            color: Colors.black,
+                                          ),
                                         ),
                                       ),
                                     ),
