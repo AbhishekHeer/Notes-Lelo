@@ -2,6 +2,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:notes_app/Ui/Auth/Login.dart';
 
@@ -15,8 +16,14 @@ class AuthMethod {
         await googleUser!.authentication;
     showAdaptiveDialog(
         context: context,
-        builder: (context) => const AlertDialog(
-              content: CircularProgressIndicator(),
+        builder: (context) => AlertDialog(
+              content: SizedBox(
+                width: Get.width * .1,
+                height: Get.height * .1,
+                child: const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              ),
             ));
     // Create a new credential
     final OAuthCredential credential = GoogleAuthProvider.credential(
@@ -50,11 +57,18 @@ class AuthMethod {
   }
 
   delete(context) async {
+    await GoogleSignIn().currentUser?.clearAuthCache();
+    await GoogleSignIn().signOut();
+
     await FirebaseAuth.instance.signOut();
     await FirebaseAuth.instance.currentUser?.delete();
   }
 
   logout(context) async {
+    await GoogleSignIn().currentUser?.clearAuthCache();
+    await GoogleSignIn().signOut();
+
+    await FirebaseAuth.instance.signOut();
     await FirebaseAuth.instance.signOut().then((value) {
       Navigator.pushReplacement(
         context,

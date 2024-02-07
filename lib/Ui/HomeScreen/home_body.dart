@@ -28,6 +28,7 @@ class _HomeBodyState extends State<HomeBody> {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
+          automaticallyImplyLeading: false,
           actions: [
             CircleAvatar(
               backgroundColor: Colors.white,

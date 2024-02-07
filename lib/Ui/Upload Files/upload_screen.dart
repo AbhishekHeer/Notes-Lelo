@@ -6,7 +6,6 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:notes_app/Get/button_color.dart';
 import 'package:notes_app/Ui/Upload%20Files/upload_tofirebase.dart';
-import 'package:permission_handler/permission_handler.dart';
 
 class UploadScreen extends StatefulWidget {
   const UploadScreen({super.key});
@@ -131,19 +130,9 @@ class _UploadScreenState extends State<UploadScreen> {
                   child: TextField(
                     controller: file,
                     onTap: () async {
-                      final status = await Permission.storage.request();
-                      if (status.isGranted) {
-                        getFile(
-                          file,
-                        );
-                      } else if (status.isDenied) {
-                        openAppSettings();
-                      } else if (status.isPermanentlyDenied) {
-                        ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
-                                content: Text(
-                                    'Please Enabled Permission For Continue')));
-                      }
+                      getFile(
+                        file,
+                      );
                     },
                     readOnly: true,
                     decoration: InputDecoration(
@@ -174,9 +163,9 @@ class _UploadScreenState extends State<UploadScreen> {
                     } else if (sem.text.length > 1) {
                       Get.snackbar('Error', "Sem Is Not Greater Than 10");
                     } else {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                           content: Row(
-                        children: const [Text('Error')],
+                        children: [Text('Error')],
                       )));
                     }
                   },
@@ -222,10 +211,10 @@ class _UploadScreenState extends State<UploadScreen> {
           // pdf = File(result.files.first.path);
           // filecont.text = pdf.absolute.toString();
         } else {
-          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
               backgroundColor: Colors.redAccent,
               content: Row(
-                children: const [Text('No File Picked'), Icon(Icons.error)],
+                children: [Text('No File Picked'), Icon(Icons.error)],
               )));
         }
       });

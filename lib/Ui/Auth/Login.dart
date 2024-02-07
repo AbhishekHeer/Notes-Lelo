@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:notes_app/Ui/Auth/auth_method.dart';
+import 'package:notes_app/Ui/HomeScreen/homeScreen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -24,40 +25,43 @@ class _LoginScreenState extends State<LoginScreen> {
               child: Padding(
                 padding: EdgeInsets.only(top: Get.height * .3),
                 child: Text(
-                  'Login',
+                  'LOGIN',
                   style: GoogleFonts.poppins(
-                      fontWeight: FontWeight.w600, fontSize: Get.width * .05),
+                      letterSpacing: Get.width * .01,
+                      fontWeight: FontWeight.w600,
+                      fontSize: Get.width * .07),
                 ),
               ),
             ),
             Padding(
-              padding: EdgeInsets.only(top: Get.height * .08),
+              padding: EdgeInsets.only(top: Get.height * .2),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
-                      IconButton(
-                        onPressed: () {
-                          AuthMethod()
-                              .signInWithFacebook(context)
-                              .then((value) {
-                            Get.snackbar('Welcome',
-                                'Welcome ${FirebaseAuth.instance.currentUser?.displayName}');
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const LoginScreen()),
-                            );
-                          });
-                        },
-                        icon: Icon(
-                          FontAwesomeIcons.facebook,
-                          color: Colors.blue,
-                          size: Get.height * .05,
-                        ),
-                      ),
+                      // IconButton(
+                      //   onPressed: () {
+                      //     AuthMethod()
+                      //         .signInWithFacebook(context)
+                      //         .then((value) {
+                      //       Get.snackbar('Welcome',
+                      //           'Welcome ${FirebaseAuth.instance.currentUser?.displayName}');
+                      //       Navigator.pushReplacement(
+                      //         context,
+                      //         MaterialPageRoute(
+                      //             builder: (context) => const HomeScreen()),
+                      //       );
+                      //     });
+                      //   },
+                      //   icon: Icon(
+                      //     FontAwesomeIcons.facebook,
+                      //     color: Colors.blue,
+                      //     size: Get.height * .05,
+                      //   ),
+                      // ),
+
                       IconButton(
                         onPressed: () {
                           AuthMethod().signInWithGoogle(context).then((value) {
@@ -66,7 +70,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const LoginScreen()),
+                                  builder: (context) => const HomeScreen()),
                             );
                           });
                         },
@@ -78,6 +82,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                     ],
                   ),
+                  Padding(
+                    padding: EdgeInsets.only(top: Get.height * .35),
+                    child: Text(
+                      'Version : 1.1.0',
+                      style: GoogleFonts.poppins(
+                          fontWeight: FontWeight.w600,
+                          fontSize: Get.width * .03,
+                          letterSpacing: Get.width * .005),
+                    ),
+                  )
                 ],
               ),
             )
