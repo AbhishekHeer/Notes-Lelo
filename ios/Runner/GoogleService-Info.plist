@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CLIENT_ID</key>
+	<string>497729192904-rgquvhhejiknqg82tl5devtdr03grdtu.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.497729192904-rgquvhhejiknqg82tl5devtdr03grdtu</string>
+	<key>ANDROID_CLIENT_ID</key>
+	<string>497729192904-omf2pi5825gdajpmp785liqa9j72rjjv.apps.googleusercontent.com</string>
 	<key>API_KEY</key>
 	<string>AIzaSyClwRNosXqVpUM3lEfR7rBuVD38SpSMt-s</string>
 	<key>GCM_SENDER_ID</key>
@@ -26,5 +32,7 @@
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
 	<string>1:497729192904:ios:8e807b58584dcf5df776fd</string>
+	<key>DATABASE_URL</key>
+	<string>https://notes-lelo-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

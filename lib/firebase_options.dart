@@ -49,6 +49,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '497729192904',
     projectId: 'notes-lelo',
     authDomain: 'notes-lelo.firebaseapp.com',
+    databaseURL: 'https://notes-lelo-default-rtdb.firebaseio.com',
     storageBucket: 'notes-lelo.appspot.com',
     measurementId: 'G-01HCSCYBZJ',
   );
@@ -58,6 +59,7 @@ class DefaultFirebaseOptions {
     appId: '1:497729192904:android:072e257daeb96da0f776fd',
     messagingSenderId: '497729192904',
     projectId: 'notes-lelo',
+    databaseURL: 'https://notes-lelo-default-rtdb.firebaseio.com',
     storageBucket: 'notes-lelo.appspot.com',
   );
 
@@ -66,7 +68,10 @@ class DefaultFirebaseOptions {
     appId: '1:497729192904:ios:8e807b58584dcf5df776fd',
     messagingSenderId: '497729192904',
     projectId: 'notes-lelo',
+    databaseURL: 'https://notes-lelo-default-rtdb.firebaseio.com',
     storageBucket: 'notes-lelo.appspot.com',
+    androidClientId: '497729192904-omf2pi5825gdajpmp785liqa9j72rjjv.apps.googleusercontent.com',
+    iosClientId: '497729192904-rgquvhhejiknqg82tl5devtdr03grdtu.apps.googleusercontent.com',
     iosBundleId: 'com.example.notesApp',
   );
 
@@ -75,7 +80,10 @@ class DefaultFirebaseOptions {
     appId: '1:497729192904:ios:45950d8dd50d254af776fd',
     messagingSenderId: '497729192904',
     projectId: 'notes-lelo',
+    databaseURL: 'https://notes-lelo-default-rtdb.firebaseio.com',
     storageBucket: 'notes-lelo.appspot.com',
+    androidClientId: '497729192904-omf2pi5825gdajpmp785liqa9j72rjjv.apps.googleusercontent.com',
+    iosClientId: '497729192904-mu60v41c0gl0kv77euc3koaqrchebn6v.apps.googleusercontent.com',
     iosBundleId: 'com.example.notesApp.RunnerTests',
   );
 }
