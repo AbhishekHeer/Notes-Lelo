@@ -6,14 +6,18 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:notes_app/Ui/Auth/Login.dart';
 
 class AuthMethod {
-  Future<UserCredential> signInWithGoogle() async {
+  Future<UserCredential> signInWithGoogle(context) async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
 
     // Obtain the auth details from the request
     final GoogleSignInAuthentication googleAuth =
         await googleUser!.authentication;
-
+    showAdaptiveDialog(
+        context: context,
+        builder: (context) => const AlertDialog(
+              content: CircularProgressIndicator(),
+            ));
     // Create a new credential
     final OAuthCredential credential = GoogleAuthProvider.credential(
       accessToken: googleAuth.accessToken,
@@ -25,13 +29,20 @@ class AuthMethod {
 
 //flutter_facebook_auth: ^1.0.0
 
-  Future<UserCredential> signInWithFacebook() async {
+  Future<UserCredential> signInWithFacebook(context) async {
     // Trigger the sign-in flow
     final LoginResult result = await FacebookAuth.instance.login();
 
     // Create a credential from the access token
     final OAuthCredential facebookAuthCredential =
         FacebookAuthProvider.credential(result.accessToken!.token);
+
+    if (facebookAuthCredential.idToken == null) {
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+          content: Row(
+        children: [Text('Failed To Sign In'), Icon(Icons.error)],
+      )));
+    }
 
     // Once signed in, return the UserCredential
     return await FirebaseAuth.instance

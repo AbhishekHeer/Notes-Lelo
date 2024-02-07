@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="facebook_app_id">414130297747383</string>
+    <string name="fb_login_protocol_scheme">fb414130297747383</string>
+    <string name="facebook_client_token">4a672875b7031572d08171376ad9beb8</string>
+    <string name="app_name">"Notes Lelo"</string>
+
+</resources>

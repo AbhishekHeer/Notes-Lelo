@@ -39,7 +39,19 @@ class _LoginScreenState extends State<LoginScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          AuthMethod()
+                              .signInWithFacebook(context)
+                              .then((value) {
+                            Get.snackbar('Welcome',
+                                'Welcome ${FirebaseAuth.instance.currentUser?.displayName}');
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginScreen()),
+                            );
+                          });
+                        },
                         icon: Icon(
                           FontAwesomeIcons.facebook,
                           color: Colors.blue,
@@ -48,10 +60,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       ),
                       IconButton(
                         onPressed: () {
-                          AuthMethod().signInWithGoogle().then((value) {
+                          AuthMethod().signInWithGoogle(context).then((value) {
                             Get.snackbar('Welcome',
                                 'Welcome ${FirebaseAuth.instance.currentUser?.displayName}');
-                            Get.toNamed('/home');
+                            Navigator.pushReplacement(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const LoginScreen()),
+                            );
                           });
                         },
                         icon: Icon(
