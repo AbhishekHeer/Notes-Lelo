@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "497729192904",
+    "firebase_url": "https://notes-lelo-default-rtdb.firebaseio.com",
+    "project_id": "notes-lelo",
+    "storage_bucket": "notes-lelo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:497729192904:android:072e257daeb96da0f776fd",
+        "android_client_info": {
+          "package_name": "com.example.notes_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "497729192904-omf2pi5825gdajpmp785liqa9j72rjjv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.notes_app",
+            "certificate_hash": "ff6bf85ba18a5abf7b99008b21dbcab224cff258"
+          }
+        },
+        {
+          "client_id": "497729192904-skt1phskq16d2quvuas769jha5pi4nkg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAZOHRSgbh-Lre7l9AzpdF24UXfRs7mBo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "497729192904-skt1phskq16d2quvuas769jha5pi4nkg.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "497729192904-mu60v41c0gl0kv77euc3koaqrchebn6v.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.notesApp.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
